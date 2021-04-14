@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Clients</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/slate/bootstrap.min.css" integrity="
+    sha384-8iuq0iaMHpnH2vSyvZMSIqQuUnQA7QM+f6srIdlgBrTSEyd//AWNMyEaSF2yPzNQ" crossorigin="anonymous">
+</head>
+<body>
+<main>
+    <h1 class="display-4 text-center mt-4 titulo">Inventory Manager</h1>
+    <h2 class="display-4 text-center mt-4 titulo">Edit {{supplier.name}}</h2>
+
+    <form class="container" action="/update_s/{{supplier.id}}" method="post">
+        <div class="row">
+            <div class="col">
+                <span>
+                    Name
+                    <p></p>
+                    {{supplier.name}}
+                    <p></p>
+                    <p>
+                        <input type="text" name="name_edit" value='{{supplier.name}}'>
+                    </p>
+                </span>
+            </div>
+            <div class="col">
+                <span>
+                    Address
+                    <p></p>
+                    {{supplier.address}}
+                    <p></p>
+                    <p>
+                        <input type="text" name="address_edit" value='{{supplier.address}}'>
+                    </p>
+                </span>
+            </div>
+        </div>
+        <p></p>
+        <div class="row">
+            <div class="col">
+                <span>
+                    Phone Number
+                    <p></p>
+                    {{supplier.phone}}
+                    <p></p>
+                    <p>
+                        <input type="tel" name="phone_edit" value='{{supplier.phone}}'>
+                    </p>
+                </span>
+            </div>
+            <div class="col">
+                <span>
+                    VAT Number
+                    <p></p>
+                    {{supplier.VAT}}
+                    <p></p>
+                    <p>
+                        <input type="text" name="VAT_edit" value='{{supplier.VAT}}'>
+                    </p>
+                </span>
+            </div>
+        </div>
+        <!--
+       {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <strong>{{ message }}</strong>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}-->
+        <button type="submit" class="btn btn-primary btn-block">
+            Update
+        </button>
+    </form>
+    <input type="button" value="Back" onclick="history.back()" class="btn btn-primary btn-block">
+</main>
+
+</body>
+</html>

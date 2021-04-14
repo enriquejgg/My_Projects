@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Clients</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/slate/bootstrap.min.css" integrity="
+    sha384-8iuq0iaMHpnH2vSyvZMSIqQuUnQA7QM+f6srIdlgBrTSEyd//AWNMyEaSF2yPzNQ" crossorigin="anonymous">
+</head>
+<body>
+<main>
+    <h1 class="display-4 text-center mt-4 titulo">Inventory Manager</h1>
+    <h2 class="display-4 text-center mt-4 titulo">Edit {{product.name}}</h2>
+
+    <form class="container" action="/update_c/{{product.id}}" method="post">
+        <div class="row">
+            <div class="col">
+                <span>
+                    Name
+                    <p></p>
+                    {{product.name}}
+                    <p></p>
+                    <p>
+                        <input type="text" name="name_edit" value='{{product.name}}'>
+                    </p>
+                </span>
+            </div>
+            <div class="col">
+                <span>
+                    Description
+                    <p></p>
+                    {{product.description}}
+                    <p></p>
+                    <p>
+                        <input type="text" name="description_edit" value='{{product.description}}'>
+                    </p>
+                </span>
+            </div>
+            <div class="col">
+                <span>
+                    Price
+                    <p></p>
+                    {{product.price}}
+                    <p></p>
+                    <p>
+                        <input type="number" name="price_edit" value='{{product.price}}'>
+                    </p>
+                </span>
+            </div>
+        </div>
+        <p></p>
+        <div class="row">
+            <div class="col">
+                <span>
+                    Stock
+                    <p></p>
+                    {{product.stock}}
+                    <p></p>
+                    <p>
+                        <input type="number" name="stock_edit" value='{{product.stock}}'>
+                    </p>
+                </span>
+            </div>
+            <div class="col">
+                <span>
+                    Maximum Stock
+                    <p></p>
+                    {{product.top_stock}}
+                    <p></p>
+                    <p>
+                        <input type="number" name="top_stock_edit" value='{{product.top_stock}}'>
+                    </p>
+                </span>
+            </div>
+            <div class="col">
+                <span>
+                    Location in Warehouse
+                    <p></p>
+                    {{product.location}}
+                    <p></p>
+                    <p>
+                        <input type="text" name="location_edit" value='{{product.location}}'>
+                    </p>
+                </span>
+            </div>
+        </div>
+        <!--
+       {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <strong>{{ message }}</strong>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}-->
+        <button type="submit" class="btn btn-primary btn-block">
+            Update
+        </button>
+    </form>
+    <input type="button" value="Back" onclick="history.back()" class="btn btn-primary btn-block">
+</main>
+
+</body>
+</html>

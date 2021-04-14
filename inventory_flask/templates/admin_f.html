@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Financial</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/slate/bootstrap.min.css" integrity="
+    sha384-8iuq0iaMHpnH2vSyvZMSIqQuUnQA7QM+f6srIdlgBrTSEyd//AWNMyEaSF2yPzNQ" crossorigin="anonymous">
+</head>
+<body>
+<main>
+    <h1 class="display-4 text-center mt-4 titulo">Inventory Manager</h1>
+    <h2 class="display-4 text-center mt-4 titulo">Profits and Losses</h2>
+    <li class="list-group-item" style="border:none">
+        <center>
+                <strong>
+                    {{ pl|safe }}
+                </strong>
+        </center>
+    </li>
+     <p></p><p></p>
+        <form action="/admin_c">
+            <input type="submit" value="Products" class="btn btn-primary btn-large btn-block">
+        </form>
+        <form action="/admin_s">
+            <input type="submit" value="Suppliers" class="btn btn-primary btn-large btn-block">
+        </form>
+        <form action="/logout">
+            <input type="submit" value="Logout" class="btn btn-primary btn-large btn-block">
+        </form>
+</main>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<main>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/slate/bootstrap.min.css" integrity="
+    sha384-8iuq0iaMHpnH2vSyvZMSIqQuUnQA7QM+f6srIdlgBrTSEyd//AWNMyEaSF2yPzNQ" crossorigin="anonymous">
+		<h1 class="display-4 text-center mt-4 titulo">Inventory Manager</h1>
+        <h2 class="display-4 text-center mt-4 titulo">Administration Login Page</h2>
+	<p></p>
+
+<form action="/login" action="/show_ad" method="POST" method="GET">
+	<center>
+		<label class="login-field-icon fui-user">
+			<div class="control-group">
+				<input type="text" class="login-field" value="" placeholder="username" name="username">
+			</div>
+		</label>
+		<p></p>
+		<label class="login-field-icon fui-user">
+			<div class="control-group">
+				<input type="password" class="login-field" value="" placeholder="password" name="password">
+			</div>
+		</label>
+	</center>
+		<p></p>
+            <center class="cls1">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            {{ message }}
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </center>
+            <p></p>
+				<input type="submit" value="Log in" class="btn btn-primary btn-large btn-block">
+		</form>
+			<form action="/">
+        		<input type="submit" value="Home" class="btn btn-primary btn-large btn-block">
+    		</form>
+</main>
+</body>
+</html>

@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: d6tcollect
+Version: 1.0.5
+Summary: d6tcollect: collects anonymous usage statistics for python libraries
+Home-page: https://github.com/d6t/d6tcollect
+Author: DataBolt Team
+Author-email: support@databolt.tech
+License: MIT
+Keywords: d6tcollect,ingest csv
+Platform: UNKNOWN
+Requires-Python: >=3.5
+
+Much like websites, this library collects anonymous usage statistics.It ONLY collects import and function call events. It does NOT collect any of your data.For details see https://github.com/d6t/d6tcollectFor privacy notice see https://www.databolt.tech/index-terms.html#privacy
+
+

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <title>
+            App de Gestión de Tareas
+        </title>
+    <!--bootstrap4 -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript">
+    window.onload = setupRefresh;
+
+    function setupRefresh() {
+      setTimeout("refreshPage();", 300000); // milliseconds
+    }
+    function refreshPage() {
+       window.location = location.href;
+    }
+    </script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!--bootstrap4 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/solar/bootstrap.min.css" integrity="sha384-NCwXci5f5ZqlDw+m7FwZSAwboa0svoPPylIW3Nf+GBDsyVum+yArYnaFLE9UDzLd" crossorigin="anonymous">
+    <!--googlefonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&display=swap" rel="stylesheet">
+    <!--googlefonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <!--botones -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!--our own style -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <script type="text/javascript">
+        $(document).ready(function () {
+        $("#datepicker").datepicker({
+        dateFormat: "dd/mm/yy",
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "-0:+5"
+        });
+        });
+    </script>
+</head>
+<body>
+<main>
+    <h1 class="display-4 text-center mt-4 titulo">App Gestion de Tareas</h1>
+        <div class="row">
+            <div class="col-md-4 offset-md-4 my-auto"> <!--Este div ocupará 4 columnas del espacio (centrado)-->
+                <div class="card"> <!--Creacion del objeto card-->
+                    <div class="card-header">
+                        <div class="col-md-4 offset-md-4 my-auto">
+                            <form action="/crear-tarea" method="post">
+                            <!-- Separamos el input del boton metiendo el input en este form-group
+                            para que los elementos no esten pegados y haya separacion entre ellos -->
+                                <div class="form-group">
+                                    <input type="text" name="contenido_tarea" placeholder="Tarea"
+                                           class="form-control" autofocus>
+                                </div>
+                                <!--Date picker -->
+                                    <p><input type="text" name="fecha_limite_tarea" id="datepicker" placeholder="Fecha limite"></p>
+                                <label for="categorias"><h5>Tipo de Tarea:</h5></label>
+                                    <select id="categorias" name="categorias_tarea">
+                                        <option value="Trabajo" selected>Trabajo</option>
+                                        <option value="Ocio">Ocio</option>
+                                        <option value="Deporte">Deporte</option>
+                                        <option value="Familia">Familia</option>
+                                        <option value="Otras">Otras</option>
+                                    </select>
+                                <p></p>
+                                <button type="submit" class="btn btn-primary btn-block"> <!-- btn-block
+                                hace que el boton ocupe todo el ancho -->
+                                    Guardar
+                                </button>
+                        </div>
+                                {% if error %}
+                                    <strong>Error:</strong> {{ error }}
+                        <input type="button" value="Vuelta Atras" onclick="history.back()" class="btn btn-primary btn-block">
+                                {% endif %}
+                                </div>
+                            </form>
+                            <!--/div>
+                                {% if error %}
+                                    <strong>Error:</strong> {{ error }}
+                                {% endif %}
+                            </div-->
+                    <p></p>
+                    <!--form>
+                        <input type="button" value="Vuelta Atras" onclick="history.back()" class="btn btn-primary btn-block">
+                    </form-->
+                </div>
+                </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <!-- Gracias a Jinja se puede introducir codigo Python en nuestro HTML
+                            y Python se encarga de ejecutarlo e interpretarlo -->
+                            {% for tarea in lista_de_tareas %}
+                            <li class="list-group-item" style="border:none">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            <span class="{% if tarea.hecha==true %} tarea_hecha {% endif %}">
+                                                {{tarea.contenido}} <!-- contenido es la variable de la clase Tarea
+                                                 que almacena el texto de la tarea --></span>
+                                        </div>
+                                    <div class="col">
+                                        <a href="/tarea-hecha/{{tarea.id}}" style="text-decoration:none">
+                                            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check-circle-fill" fill="green" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477
+                                                9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a href="/eliminar-tarea/{{tarea.id}}" style="text-decoration:none">
+                                            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-trash2" fill="black" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M3.18 4l1.528 9.164a1 1 0 0 0 .986.836h4.612a1 1 0 0 0 .986-.836L12.82
+                                                4H3.18zm.541 9.329A2 2 0 0 0 5.694 15h4.612a2 2 0 0 0 1.973-1.671L14 3H2l1.721 10.329z"/>
+                                                <path d="M14 3c0 1.105-2.686 2-6 2s-6-.895-6-2 2.686-2 6-2 6 .895 6 2z"/>
+                                                <path fill-rule="evenodd" d="M12.9 3c-.18-.14-.497-.307-.974-.466C10.967 2.214 9.58 2 8
+                                                2s-2.968.215-3.926.534c-.477.16-.795.327-.975.466.18.14.498.307.975.466C5.032 3.786 6.42 4 8
+                                                4s2.967-.215 3.926-.534c.477-.16.795-.327.975-.466zM8 5c3.314 0 6-.895 6-2s-2.686-2-6-2-6 .895-6 2 2.686 2 6 2z"/>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                        <div class="col">
+                                            <a href="/edit-tarea/{{tarea.id}}" style="...">
+                                            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <span>
+                                            {{tarea.fecha_limite}} <!-- contenido es la variable de la clase Tarea
+                                            que almacena el texto de la tarea -->
+                                        </span>
+                                    </div>
+                                        <div class="col">
+                                            <span>
+                                                {{tarea.categoria}} <!-- contenido es la variable de la clase Tarea
+                                                que almacena el texto de la tarea -->
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            <!--/div-->
+        <!--/div-->
+    </main>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Suppliers Sales</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/slate/bootstrap.min.css" integrity="
+    sha384-8iuq0iaMHpnH2vSyvZMSIqQuUnQA7QM+f6srIdlgBrTSEyd//AWNMyEaSF2yPzNQ" crossorigin="anonymous">
+</head>
+<body>
+<main>
+    <li class="list-group-item" style="border:none">
+        <h2 class="display-4 text-center mt-4 titulo">{{supplier_l.name}}</h2>
+            <center>
+                <strong>
+                <!--{{ one_year|safe }}-->
+                {{ one_sales|safe }}
+                </strong>
+            </center>
+        <input type="button" value="Back" onclick="history.back()" class="btn btn-primary btn-block">
+            <form action="/logout">
+        <input type="submit" value="Home" class="btn btn-primary btn-large btn-block">
+            </form>
+</main>
+</body>
+</html>

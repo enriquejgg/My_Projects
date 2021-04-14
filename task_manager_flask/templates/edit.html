@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edicion de Tareas</title>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!--bootstrap4 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/solar/bootstrap.min.css" integrity="sha384-NCwXci5f5ZqlDw+m7FwZSAwboa0svoPPylIW3Nf+GBDsyVum+yArYnaFLE9UDzLd" crossorigin="anonymous">
+    <!--googlefonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&display=swap" rel="stylesheet">
+    <!--googlefonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <!--botones -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!--our own style -->
+        <script type="text/javascript">
+        $(document).ready(function () {
+        $("#datepicker").datepicker({
+        dateFormat: "dd/mm/yy",
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "-0:+5"
+        });
+        });
+    </script>
+</head>
+<body>
+<main>
+    <h1 class="display-4 text-center mt-4 titulo">Edicion de Tareas</h1>
+    <div>
+        <li class="list-group-item" style="border:none">
+            <!--form class="container" action="/up-tarea" method="post"-->
+            <form class="container" action="/up-tarea/{{tarea.id}}" method="post">
+                <div class="row">
+                    <div class="col">
+                        <!--form action="/up-tarea" method="post"><!--/edit_result-->
+                        <span>
+                            {{tarea.contenido}} <!-- contenido es la variable de la clase Tarea
+                                                que almacena el texto de la tarea -->
+                            <p></p>
+                            <input type="text" name="contenido_tarea" placeholder='{{tarea.contenido}}'>
+                                   <!--class="form-control" autofocus-->
+                        </span>
+                    </div>
+                    <div class="col">
+                        <span>
+                            {{tarea.fecha_limite}} <!-- contenido es la variable de la clase Tarea
+                                            que almacena el texto de la tarea -->
+                            <p></p>
+                            <input type="text" name="fecha_limite_tarea" id="datepicker" placeholder='{{tarea.fecha_limite}}'>
+                        </span>
+                    </div>
+                    <div class="col">
+                        <span>
+                            {{tarea.categoria}} <!-- contenido es la variable de la clase Tarea
+                                                que almacena el texto de la tarea -->
+                            <p></p>
+                            <label for="categorias"><h5>Tarea Actualizada: </h5></label>
+                                    <select id="categorias" name="categorias_tarea">
+                                        <option value="" selected>{{tarea.categoria}}</option>
+                                        <option value="Trabajo">Trabajo</option>
+                                        <option value="Ocio">Ocio</option>
+                                        <option value="Deporte">Deporte</option>
+                                        <option value="Familia">Familia</option>
+                                        <option value="Otras">Otras</option>
+                                    </select>
+                        </span>
+                    </div>
+                    <!--/form-->
+                    <button type="submit" class="btn btn-primary btn-block"> <!-- btn-block
+                                hace que el boton ocupe todo el ancho-->
+                                    Actualizar
+                                </button><!--/form-->
+                    <!--button type="submit" onclick="history.back()" class="btn btn-primary btn-block"> <btn-block
+                                hace que el boton ocupe todo el ancho-->
+                                    <!--Home-->
+                                <!--/button-->
+                    </div><!--
+                        {% if error %}
+                            <strong>Error:</strong> {{ error }}
+                            <input type="button" value="Vuelta Atras" onclick="history.back()" class="btn btn-primary btn-block">
+                        {% endif %}-->
+            </form>
+            </div>
+        </li>
+    </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,8 @@
+#!/Users/enriquejosegonzalezgarcia/Gref/Internet_Files/docs_gref/mes_trucs/learning/python_et_AI/python/Projects_Jupyter/new_projects/you_down/venv/bin/python3.9
+# -*- coding: utf-8 -*-
+import re
+import sys
+from pytube.cli import main
+if __name__ == '__main__':
+    sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
+    sys.exit(main())

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+     <title>Clients</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/slate/bootstrap.min.css" integrity="
+    sha384-8iuq0iaMHpnH2vSyvZMSIqQuUnQA7QM+f6srIdlgBrTSEyd//AWNMyEaSF2yPzNQ" crossorigin="anonymous">
+</head>
+<body>
+<main>
+    <h1 class="display-4 text-center mt-4 titulo">Inventory Manager</h1>
+    <h2 class="display-4 text-center mt-4 titulo">Clients</h2>
+           <div class="container">
+           <div class="row">
+               <div class="col"><h5>
+                   <center>
+                   Name
+                   </center></h5>
+               </div>
+               <div class="col">
+               </div>
+               <div class="col"><h5>
+                   <center>
+                   Description
+                   </center></h5>
+               </div>
+               <div class="col">
+               </div>
+               <div class="col"><h5>
+                   <center>
+                   Price
+                   </center></h5>
+               </div>
+               <div class="col">
+               </div>
+           </div>
+           </div>
+        <ul>
+            {% for prod in prod_list %}
+            <li class="list-group-item" style="border:none">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                {{prod.name}}
+                            </div>
+                        <div class="col">
+                {{prod.description}}
+                            </div>
+                        <div class="col">
+                {{prod.price}}€
+                            </div>
+                        </div>
+                    </div>
+            </li>
+            {% endfor %}
+        </ul>
+        <input type="button" value="Back" onclick="history.back()" class="btn btn-primary btn-block">
+        <form action="/">
+            <input type="submit" value="Home" class="btn btn-primary btn-large btn-block">
+        </form>
+    </div>
+</main>
+</body>
+</html>

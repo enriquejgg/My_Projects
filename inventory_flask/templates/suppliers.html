@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <title>Suppliers</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/slate/bootstrap.min.css" integrity="
+    sha384-8iuq0iaMHpnH2vSyvZMSIqQuUnQA7QM+f6srIdlgBrTSEyd//AWNMyEaSF2yPzNQ" crossorigin="anonymous">
+</head>
+<body>
+<main>
+    <h1 class="display-4 text-center mt-4 titulo">Inventory Manager</h1>
+    <h2 class="display-4 text-center mt-4 titulo">Suppliers</h2>
+        <div class="center">
+            <center>
+            <form style="width:20%" action="/stats1" action="/display_s">
+                <button type="submit">Generate Excel Report</button>
+            </form>
+        </center>
+        </div>
+    <div class="card-body">
+           <div class="row">
+               <div class="col">
+               </div>
+               <div class="col">
+               </div>
+               <div class="col"><h5>
+                   <center>
+                   Name
+                   </center></h5>
+               </div>
+               <div class="col"><h5>
+                   <center>
+                   Address
+                   </center></h5>
+               </div>
+               <div class="col"><h5>
+                   <center>
+                   Phone Number
+                   </center></h5>
+               </div>
+               <div class="col"><h5>
+                   <center>
+                   VAT Number
+                   </center></h5>
+               </div>
+               <div class="col">
+               </div>
+               <div class="col">
+               </div>
+               <div class="col">
+               </div>
+           </div>
+           </div>
+        <ul>
+            {% for detail in supp_list %}
+            <li class="list-group-item" style="border:none">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                {{detail.name}}
+                            </div>
+                        <div class="col">
+                {{detail.address}}
+                            </div>
+                        <div class="col">
+                {{detail.phone}}
+                            </div>
+                        <div class="col">
+                {{detail.VAT}}
+                            </div>
+                            <div class="col">
+                                 <a href="/display_indiv/{{detail.id}} " style="...">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="currentColor"
+                                     class="bi bi-bar-chart-line" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1
+                                    0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2zm1
+                                    12h2V2h-2v12zm-3 0V7H7v7h2zm-5 0v-3H2v3h2z"/>
+                                    </svg>
+                                 </a>
+                            </div>
+                    </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        <input type="button" value="Back" onclick="history.back()" class="btn btn-primary btn-block">
+    <form action="/">
+        <input type="submit" value="Home" class="btn btn-primary btn-large btn-block">
+    </form>
+    </div>
+</main>
+</body>
+</html>
